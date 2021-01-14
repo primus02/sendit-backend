@@ -43,6 +43,10 @@ app.use((req, res, next)=>{
 
 app.use(bodyParser.json());
 
+app.get("/", (req, res, next)=>{
+    res.send("Sendit App is running!!");
+});
+
 app.use("/signup", customerRoute);
 
 app.use("/admin/signup", adminRoute);

@@ -109,8 +109,8 @@ router.get("/get-order/search", CheckAuth, (req,res,next)=>{
     });
 })
 
-router.patch("/change-destination/search", CheckAuth, (req,res, next)=>{
-    Order.updateOne({_id: req.query.id, username: req.query.username }, {$set : {destination: req.body.destination}})
+router.put("/edit-order/search", CheckAuth, (req,res, next)=>{
+    Order.updateOne({_id: req.query.id, username: req.query.username }, {$set : {req.body})
     .exec()
     .then(order=>{
         res.status(200).json({
@@ -133,26 +133,6 @@ router.patch("/change-destination/search", CheckAuth, (req,res, next)=>{
     });
 });
 
-// router.delete("/cancel-order/search", CheckAuth, (req,res,next)=>{
-//     Order.remove({_id: req.query.id, username: req.query.username})
-//     .exec()
-//     .then(data=>{
-//         res.status(204).json({
-//         success: true,
-//         data: data,
-//             "statusCode": "204",
-//             "statusText": "No Content",
-//             "message": "Order cancelled successfully",
-//         });
-//     })
-//     .catch(err=>{
-//         res.status(500).json({
-//             "statusCode": "500",
-//             "statusText": "Internal Server Error",
-//             "message": "Internal Server Error"
-//         });
-//     });
-// });
 
 router.delete("/cancel-order/search", CheckAuth, async (req, res, next) => {
     try {

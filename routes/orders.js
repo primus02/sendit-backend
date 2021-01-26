@@ -110,7 +110,7 @@ router.get("/get-order/search", CheckAuth, (req,res,next)=>{
 })
 
 router.put("/edit-order/search", CheckAuth, (req,res, next)=>{
-    Order.updateOne({_id: req.query.id, username: req.query.username }, {$set : {req.body})
+    Order.updateOne({_id: req.query.id, username: req.query.username }, {$set : req.body})
     .exec()
     .then(order=>{
         res.status(200).json({
